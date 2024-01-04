@@ -6,12 +6,14 @@ class Entrada
     private $descripcion;
     private $fecha;
     private $autor;
-    public function __construct($id,  $titulo,  $descripcion,  $fecha,  $autor){
+	 private $publica;
+    public function __construct($id,  $titulo,  $descripcion,  $fecha,  $autor,$publica){
         $this->id = $id;
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
         $this->fecha = $fecha;
         $this->autor = $autor;
+        $this->publica = $publica;
     }
     public function getId(){
         return $this->id;
@@ -32,4 +34,5 @@ class Entrada
     public function getAutor(){
         return $this->autor;
     }
+    public function getPublica() {return $this->publica;}
 }

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake Blogger</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>entradas publicas</h1>
-    <h2>añadir cosas</h2>
+    
 </body>
 </html>
