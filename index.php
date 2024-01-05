@@ -15,6 +15,8 @@
        
         include './controller/controlador.php';
         $controlador = new Controlador();
+        $idioma =substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+        $controlador->getIdiomaPorDefecte($idioma);
         $accion = isset($_GET["accion"]) ? $_GET["accion"] : 'inicio';
         $controlador->controlarPaginas($accion);
     ?>

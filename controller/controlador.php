@@ -14,6 +14,9 @@
         function mostrarInfoPrivate($id,$email,$pass){
             $this->instanceView->mostrarInfoEntrada($this->instanceEntradaService->infoEntrada($id),$this->instanceEntradaService->comentarioDeUnEntrada($id),$this->instanceUsuarioService->usuarioActual($email,$pass));
         }
+        function getIdiomaPorDefecte($idioma){
+            
+        }
 
         function controlarPaginas($accion){
             switch($accion){
