@@ -1,6 +1,7 @@
 <?php
 require("./service/connect.php");
 require("./model/Entrada.php");
+require("./model/Comentario.php");
 class EntradaService
 {
     private $db;
@@ -8,8 +9,7 @@ class EntradaService
     private $entradaPublicas;
     private $entradasPrivadas;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->db = new Database();
         
         $this->entradaPublicas = [];
@@ -38,5 +38,24 @@ class EntradaService
           return  $entrada->getPublica() == 1;
         });
         
+    }
+    public function infoEntrada($id){
+        $entradas = $this->entradas();
+        $entradaInfo = array_filter($entradas,function($entrada) use ($id){
+            return  $entrada->getId() == $id;
+        });
+        return  reset($entradaInfo);//devolver el primer elemento --> que es un Object
+    }
+    public function comentarioDeUnEntrada($id){
+        $comentarios = [];
+        $sql = "select * from comentari where entrada_id=".$id;
+        $result = $this->db->getConnection()->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $comentario = new Comentario($row["idcomentari"],  $row["descripcio"],  $row["entrada_id"],  $row["usuari_username"]);
+                $comentarios[] = $comentario;
+            }
+        }
+        return $comentarios;
     }
 }

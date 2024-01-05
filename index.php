@@ -7,17 +7,12 @@
     <title>Fake Blogger</title>
 </head>
 <body>
-    <h1>Entradas Públicas</h1>
-    
-    <div class="login">
-        <a href=""><button>Login</button></a>
-    </div>
-    <main>
+  
     <?php
         include './controller/controlador.php';
         $controlador = new Controlador();
-        $controlador->mostrarEntradasPublicas();
+        $accion = isset($_GET["accion"]) ? $_GET["accion"] : 'inicio';
+        $controlador->controlarPaginas($accion);
     ?>
-    </main>
 </body>
 </html>

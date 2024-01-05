@@ -8,8 +8,19 @@
             $this->instanceEntradaService  = new EntradaService();
             $this->instanceView = new View();
         }
-        function mostrarEntradasPublicas(){
-             $this->instanceView->mostrarEntradasPublicas($this->instanceEntradaService->entradasPublicas());
+
+        function controlarPaginas($accion){
+            switch($accion){
+                case 'inicio':
+                    $this->instanceView->mostrarEntradasPublicas($this->instanceEntradaService->entradasPublicas());
+                    break;
+                case 'post':
+                  $id = $_GET['id'];
+                  $this->instanceView->mostrarInfoEntrada($this->instanceEntradaService->infoEntrada($id),$this->instanceEntradaService->comentarioDeUnEntrada($id));
+                break;
+                case 'login':
+                    break;
+            }
         }
     }
 ?>
