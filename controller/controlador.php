@@ -46,7 +46,7 @@
                         }else{
                             $this->instanceView->mostrarLogin();
                         }
-                    }if($_SERVER["REQUEST_METHOD"] == "GET"){
+                    }else if($_SERVER["REQUEST_METHOD"] == "GET"){
                         $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas());
                     }
                     else{
@@ -55,6 +55,7 @@
                     break;
                 case 'logout':
                     $this->instanceView->logout();
+                    $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradasPublicas());
                     break;
                 case 'addComent':
                     if($_SERVER["REQUEST_METHOD"] == "POST"){

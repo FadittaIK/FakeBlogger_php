@@ -11,7 +11,10 @@
             include 'login.php';
         }
         function logout(){
-            include 'logout.php';
+            if (isset($_SESSION["usuario"])) {
+                session_unset();
+                session_destroy();
+            }
         }
     }
 ?>
