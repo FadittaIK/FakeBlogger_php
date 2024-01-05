@@ -19,7 +19,7 @@ main{
     gap: 30px;
 }
 .login, #home{
-    margin: 20px;
+    margin: 30px;
     width: 60px;
 }
 .login button {
@@ -53,28 +53,52 @@ a{
 /*POST pagina*/
 .descripcionPost{
     width: 600px;
-    padding: 50px;
-    background-color: beige;
+    padding: 40px;
+    font-size: 1.7em;
+    background-color: rgb(187, 181, 193);
+    border-radius: 25px;
 }
+
 .post{
+    margin: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
+    width: 650px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: rgb(126, 116, 133);
+}
+.post p{
+    font-size: 1.3em;
+    font-style: italic;
+}
+.post input[type='text']{
+    width:500px;
+    padding: 10px;
+    margin: 10px;
+}
+.post input[type='submit'], button{
+    padding: 10px;
+    cursor: pointer;
+    background-color: #5c5757;
+    color: white;
+    border-radius: 25px;
 }
 .comentario{
+    width:600px;
     padding: 20px;
     background-color: #aba7a7;
     border: 1px solid gainsboro;
     font-size: 1.4em;
- 
+    margin: 10px 0px;
+    border-radius: 25px;
 }
 .comentario :not(span){
     font-style: italic;
 }
 .comentario span{
     color: #d2cece;
-}
-#home button{
- 
 }

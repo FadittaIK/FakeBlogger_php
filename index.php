@@ -1,3 +1,6 @@
+<?php
+      session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
 <body>
   
     <?php
+       
         include './controller/controlador.php';
         $controlador = new Controlador();
         $accion = isset($_GET["accion"]) ? $_GET["accion"] : 'inicio';

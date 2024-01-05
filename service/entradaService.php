@@ -58,4 +58,16 @@ class EntradaService
         }
         return $comentarios;
     }
+    function addComment($comentario,$idPost,$usuarioActual){
+        $sql = "INSERT INTO  comentari(descripcio,entrada_id,usuari_username) VALUES('$comentario','$idPost','$usuarioActual')";
+        $result = $this->db->getConnection()->query($sql);
+    }
+    function deleteComment($comentario){
+        //reiniciar el auto_increment
+        $sql = "DELETE FROM comentari WHERE idcomentari = '$comentario' ";
+        $result = $this->db->getConnection()->query($sql);
+        $sql2 = "ALTER table comentari AUTO_INCREMENT = 1";
+        $result2 = $this->db->getConnection()->query($sql2);
+
+    }
 }
