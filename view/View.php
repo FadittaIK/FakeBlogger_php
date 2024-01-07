@@ -1,10 +1,11 @@
 <?php
     class View{
+       
         
-        function mostrarEntradas($entradas){
+        function mostrarEntradas($entradas,$traducir){
             include 'entradasView.php';
         }
-        function mostrarInfoEntrada($entrada,$comentarios,$usuarioActual){
+        function mostrarInfoEntrada($entrada,$comentarios,$usuarioActual,$traducir){
            include 'entradaInfor.php';
         }
         function mostrarLogin(){

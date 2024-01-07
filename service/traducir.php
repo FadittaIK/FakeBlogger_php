@@ -12,8 +12,6 @@ class Traducir{
     function traducirTexto($idioma,$texto){
         $this->tr->setSource('es');
         $this->tr->setTarget($idioma);
-        echo $this->tr->translate($texto);
-
+        return $this->tr->translate($texto);
     }
-    //
     }

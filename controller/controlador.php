@@ -10,28 +10,28 @@
         private $instanceUsuarioService;
         private $instancetraducir;
         private $idioma;
+        private $traducir;
         function __construct($idioma){
+            $this->idioma = $idioma;
+            $this->traducir =  function($texto){
+              return  $this->instancetraducir->traducirTexto($this->idioma,$texto);
+            };
             $this->instanceEntradaService  = new EntradaService();
             $this->instanceView = new View();
             $this->instanceUsuarioService = new UsuarioService();
             $this->instancetraducir = new Traducir();
-            $this->idioma = $idioma;
         }
         function mostrarInfoPrivate($id,$email,$pass){
-            $this->instanceView->mostrarInfoEntrada($this->instanceEntradaService->infoEntrada($id),$this->instanceEntradaService->comentarioDeUnEntrada($id),$this->instanceUsuarioService->usuarioActual($email,$pass));
+            $this->instanceView->mostrarInfoEntrada($this->instanceEntradaService->infoEntrada($id),$this->instanceEntradaService->comentarioDeUnEntrada($id),$this->instanceUsuarioService->usuarioActual($email,$pass),$this->traducir);
         }
-        function getIdiomaPorDefecte(){
+       /* function getIdiomaPorDefecte(){
            return $this->idioma;
         }
-        function traducir($texto){
-            $idioma = $this->getIdiomaPorDefecte();
-          return  $this->instancetraducir->traducirTexto($texto,$idioma);
-        }
-
+        */
         function controlarPaginas($accion){
             switch($accion){
                 case 'inicio':
-                    $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradasPublicas());
+                    $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradasPublicas(),$this->traducir);
                     break;
                 case 'post':
                   $id = $_GET['id'];
@@ -54,13 +54,13 @@
                             if(!isset($_SESSION["usuario"])){
                                 $_SESSION["usuario"] = $email;
                                 $_SESSION["pass"] = $pass;
-                                $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas());
+                                $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas(),$this->traducir);
                             }
                         }else{
                             $this->instanceView->mostrarLogin();
                         }
                     }else if($_SERVER["REQUEST_METHOD"] == "GET"){
-                        $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas());
+                        $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas(),$this->traducir);
                     }
                     else{
                         $this->instanceView->mostrarLogin();
@@ -68,7 +68,7 @@
                     break;
                 case 'logout':
                     $this->instanceView->logout();
-                    $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradasPublicas());
+                    $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradasPublicas(),$this->traducir);
                     break;
                 case 'addComent':
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -81,7 +81,7 @@
                         $this->instanceEntradaService->addComment($comentario,$idPost,$usuarioActual);
                         $this->mostrarInfoPrivate($idPost,$email,$pass); 
                     }else{
-                        $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas());
+                        $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas(),$this->traducir);
                     }
                     break;
                 case 'deleteComment':
@@ -93,7 +93,7 @@
                         $idPost = $_GET["idPost"];
                         $this->mostrarInfoPrivate($idPost,$email,$pass); 
                     }else{
-                        $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas());
+                        $this->instanceView->mostrarEntradas($this->instanceEntradaService->entradas(),$this->traducir);
                     }
                     break;
             }

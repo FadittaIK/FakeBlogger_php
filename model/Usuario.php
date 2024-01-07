@@ -4,14 +4,10 @@ class Usuario
     private $username;
     private $email;
     private $pass;
-   // private $nombre;
-    //private $apellidos;
     public function __construct($username,  $email,  $pass){
         $this->username = $username;
         $this->email = $email;
         $this->pass = $pass;
-      //  $this->nombre = $nombre;
-       // $this->apellidos = $apellidos;
     }
     public function getUsername()
     {
@@ -27,14 +23,4 @@ class Usuario
     {
         return $this->pass;
     }
-
-    /*public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    public function getApellidos()
-    {
-        return $this->apellidos;
-    }*/
 }
