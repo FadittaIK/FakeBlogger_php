@@ -4,11 +4,10 @@
          <h1> {$entrada->getTitulo()} </h1>";
 
          if(isset($_SESSION["usuario"])){
-          echo "<a href='index.php?accion=private'id=home><button>Home</button></a>";
+          echo "<a href='index.php?accion=private'id=home><button>{$controlador->traducir('Home')}</button></a>";
          }else{
             echo "<a href='index.php?accion=inicio' id=home><button>Home</button></a>";
          }
-
          echo "
          <div class='post'>
          <div class='descripcionPost'> {$entrada->getDescripcion()}</div>

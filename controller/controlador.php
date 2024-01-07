@@ -2,20 +2,30 @@
     include("./service/entradaService.php");
     include("./service/usuarioService.php");
     include("./view/View.php");
+    include("./service/traducir.php");
+    
     class Controlador{
         private $instanceEntradaService;
         private $instanceView;
         private $instanceUsuarioService;
-        function __construct(){
+        private $instancetraducir;
+        private $idioma;
+        function __construct($idioma){
             $this->instanceEntradaService  = new EntradaService();
             $this->instanceView = new View();
             $this->instanceUsuarioService = new UsuarioService();
+            $this->instancetraducir = new Traducir();
+            $this->idioma = $idioma;
         }
         function mostrarInfoPrivate($id,$email,$pass){
             $this->instanceView->mostrarInfoEntrada($this->instanceEntradaService->infoEntrada($id),$this->instanceEntradaService->comentarioDeUnEntrada($id),$this->instanceUsuarioService->usuarioActual($email,$pass));
         }
-        function getIdiomaPorDefecte($idioma){
-            
+        function getIdiomaPorDefecte(){
+           return $this->idioma;
+        }
+        function traducir($texto){
+            $idioma = $this->getIdiomaPorDefecte();
+          return  $this->instancetraducir->traducirTexto($texto,$idioma);
         }
 
         function controlarPaginas($accion){
