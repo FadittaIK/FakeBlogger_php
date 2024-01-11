@@ -24,8 +24,8 @@
          foreach($comentarios as $comentario){
             echo "
             <div class='comentario'>
-            <div> {$traducir($comentario->getDescripcion())}</div>
-            <span>{$traducir($comentario->getUsuario())}</span>";
+            <div> {$comentario->getDescripcion()}</div>
+            <span>{$comentario->getUsuario()}</span>";
             if(isset($_SESSION["usuario"]) && $comentario->getUsuario() == $usuarioActual->getUsername()){
                echo "<form action='index.php?accion=deleteComment&idComment={$comentario->getId()}&idPost={$entrada->getId()}' method='POST'>
                <input type='submit' id='borrar' value={$traducir('Borrar')}></form>";

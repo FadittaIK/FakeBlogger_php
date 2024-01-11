@@ -11,7 +11,6 @@ class EntradaService
 
     public function __construct(){
         $this->db = new Database();
-        
         $this->entradaPublicas = [];
         $this->entradasPrivadas = [];
     
